@@ -1,32 +1,36 @@
 #pragma once
-
+//Enum for the possible car types
 enum class CarMake
 {
-	Lambo,
+	Acura,
 	BMW,
-	Smart
+	Honda
 };
+
+//Abstract car class for all types of cars
 class Car
 {
 public:
+	//The max speed function which every car has, needs to be overriden
+	//since it is different for every car
 	virtual int GetMaxSpeed() = 0;
 };
 
-class Lambo : public Car
+class Acura: public Car
 {
 public:
 	int GetMaxSpeed() override
 	{
-		return 500;
+		return 150;
 	}
 };
 
-class Smart : public Car
+class Honda: public Car
 {
 public:
 	int GetMaxSpeed() override
 	{
-		return 50;
+		return 100;
 	}
 };
 
@@ -35,10 +39,11 @@ class BMW : public Car
 public:
 	int GetMaxSpeed() override
 	{
-		return 250;
+		return 200;
 	}
 };
 
+//The Car Factory which produces whatever cartype is passed into it
 class Factory
 {
 public:
@@ -47,12 +52,31 @@ public:
 		Car* car = nullptr;
 		switch (type)
 		{
-		case CarMake::Lambo:
-			return new Lambo();
+		case CarMake::Acura:
+			return new Acura();
 		case CarMake::BMW:
 			return new BMW();
-		case CarMake::Smart:
-			return new Smart();
+		case CarMake::Honda:
+			return new Honda();
 		}
 	}
 };
+
+//Example how the factory is used
+int main()
+{
+	Car* a = Factory::CreateCar(CarMake::BMW);
+	Car* c = Factory::CreateCar(CarMake::Honda);
+	Car* b = Factory::CreateCar(CarMake::Acura);
+
+	int speed;
+	speed = a->GetMaxSpeed();
+	speed = b->GetMaxSpeed();
+	speed = c->GetMaxSpeed();
+
+	delete a;
+	delete b;
+	delete c;
+
+	return 0;
+}
