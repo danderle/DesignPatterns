@@ -153,6 +153,7 @@ int main()
 	build = new MazdaBuilder();
 	direct.SetBuilder(build);
 	car = direct.MakeCar();
+	car->GetSpecs();
 	delete car;
 	delete build;
 	build = nullptr;
