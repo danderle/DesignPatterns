@@ -62,21 +62,21 @@ public:
 	}
 };
 
-//Example how the factory is used
-int main()
-{
-	Car* a = Factory::CreateCar(CarMake::BMW);
-	Car* c = Factory::CreateCar(CarMake::Honda);
-	Car* b = Factory::CreateCar(CarMake::Acura);
-
-	int speed;
-	speed = a->GetMaxSpeed();
-	speed = b->GetMaxSpeed();
-	speed = c->GetMaxSpeed();
-
-	delete a;
-	delete b;
-	delete c;
-
-	return 0;
-}
+////Example how the factory is used
+//int main()
+//{
+//	Car* a = Factory::CreateCar(CarMake::BMW);
+//	Car* c = Factory::CreateCar(CarMake::Honda);
+//	Car* b = Factory::CreateCar(CarMake::Acura);
+//
+//	int speed;
+//	speed = a->GetMaxSpeed();
+//	speed = b->GetMaxSpeed();
+//	speed = c->GetMaxSpeed();
+//
+//	delete a;
+//	delete b;
+//	delete c;
+//
+//	return 0;
+//}

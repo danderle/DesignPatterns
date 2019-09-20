@@ -137,29 +137,29 @@ private:
 	Builder* pBuilder;
 };
 
-//Example builds 2 different cars and prints their specs
-int main()
-{
-	Director direct;
-	Builder* build = new BmwBuilder();
-	direct.SetBuilder(build);
-	Car* car = direct.MakeCar();
-	car->GetSpecs();
-	delete car;
-	delete build;
-	build = nullptr;
-	car = nullptr;
-
-	build = new MazdaBuilder();
-	direct.SetBuilder(build);
-	car = direct.MakeCar();
-	car->GetSpecs();
-	delete car;
-	delete build;
-	build = nullptr;
-	car = nullptr;
-
-	return 0;
-}
+////Example builds 2 different cars and prints their specs
+//int main()
+//{
+//	Director direct;
+//	Builder* build = new BmwBuilder();
+//	direct.SetBuilder(build);
+//	Car* car = direct.MakeCar();
+//	car->GetSpecs();
+//	delete car;
+//	delete build;
+//	build = nullptr;
+//	car = nullptr;
+//
+//	build = new MazdaBuilder();
+//	direct.SetBuilder(build);
+//	car = direct.MakeCar();
+//	car->GetSpecs();
+//	delete car;
+//	delete build;
+//	build = nullptr;
+//	car = nullptr;
+//
+//	return 0;
+//}
 
 

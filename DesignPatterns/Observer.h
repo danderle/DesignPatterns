@@ -2,13 +2,18 @@
 #include <iostream>
 #include  <vector>
 
+//Forward declaration
+class Observer;
+
 //Subject class
 //it stores all the observers and notifys them if the value has changed
 class Subject
 {
 public:
+	Subject() = default;
+
 	//Stores an observer in a vector
-	void Attach(class Observer* obs)
+	void Attach(Observer* obs)
 	{
 		views.push_back(obs);
 	}
@@ -27,11 +32,9 @@ public:
 	}
 
 	//Cycles the vector with the saved observers
-	void Notify() const
-	{
-		for (auto view : views)
-			view->Update();
-	}
+	//defined at the bottom because derived obeservers have not been defined
+	void Notify() const;
+	
 
 private:
 	std::vector<Observer*> views;
@@ -70,6 +73,7 @@ private:
 	Subject *pSubject;
 };
 
+//OddObserver class
 class OddObserver : public Observer
 {
 public:
@@ -78,6 +82,8 @@ public:
 		:
 		Observer(sub)
 	{}
+
+	//oddObserver update function responds to the subject change
 	void Update() override
 	{
 		int num = GetSubject()->GetValue();
@@ -88,6 +94,7 @@ public:
 	}
 };
 
+//EvenObserver class
 class EvenObserver : public Observer
 {
 public:
@@ -96,6 +103,8 @@ public:
 		:
 		Observer(sub)
 	{}
+
+	//oddObserver update function responds to the subject change
 	void Update() override
 	{
 		int num = GetSubject()->GetValue();
@@ -106,10 +115,26 @@ public:
 	}
 };
 
+//Must be defined here
+void Subject::Notify() const
+{
+	for (auto view : views)
+		view->Update();
+}
 
 
+//Example of use
+int main()
+{
+	Subject* sub = new Subject();
+	Observer* ob1 = new OddObserver(sub);
+	Observer* ob2 = new EvenObserver(sub);
 
+	sub->SetValue(2);
+	sub->SetValue(11);
 
+	return 0;
+}
 
 
 
