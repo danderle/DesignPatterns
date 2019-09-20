@@ -123,18 +123,18 @@ void Subject::Notify() const
 }
 
 
-//Example of use
-int main()
-{
-	Subject* sub = new Subject();
-	Observer* ob1 = new OddObserver(sub);
-	Observer* ob2 = new EvenObserver(sub);
-
-	sub->SetValue(2);
-	sub->SetValue(11);
-
-	return 0;
-}
+////Example of use
+//int main()
+//{
+//	Subject* sub = new Subject();
+//	Observer* ob1 = new OddObserver(sub);
+//	Observer* ob2 = new EvenObserver(sub);
+//
+//	sub->SetValue(2);
+//	sub->SetValue(11);
+//
+//	return 0;
+//}
 
 
 
