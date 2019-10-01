@@ -14,6 +14,10 @@ public:
 	//The max speed function which every car has, needs to be overriden
 	//since it is different for every car
 	virtual int GetMaxSpeed() = 0;
+
+	//Needs to be virtual so inheriting 
+	//classes destructors will be called on deletion
+	virtual ~Car() = default;
 };
 
 class Acura: public Car

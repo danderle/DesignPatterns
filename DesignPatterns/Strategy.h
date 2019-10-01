@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include <memory>
 
 //Abstract mood class
@@ -7,6 +8,10 @@ class Mood
 public:
 	//Derived mood classes will override this
 	virtual void MyMood() const = 0;
+
+	//Needs to be virtual so inheriting 
+	//classes destructors will be called on deletion
+	virtual ~Mood() = default;
 };
 
 typedef std::shared_ptr<Mood> moodPtr;

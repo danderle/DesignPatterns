@@ -9,6 +9,10 @@ class State
 public:
 	//will print the current activated state
 	virtual void PrintState() const = 0;
+
+	//Needs to be virtual so inheriting 
+	//classes destructors will be called on deletion
+	virtual ~State() = default;
 };
 
 typedef std::unique_ptr<State> StatePointer;
