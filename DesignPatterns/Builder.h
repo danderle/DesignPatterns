@@ -7,6 +7,15 @@
 class Builder
 {
 public:
+	Builder() = delete;
+	Builder(int wheelSize, int enginePower, int doors, std::string model)
+		:
+		WheelSize(wheelSize),
+		EnginePower(enginePower),
+		Doors(doors),
+		Model(model)
+	{}
+
 	//Returns the wheel size of a car
 	virtual int GetWheelSize() = 0;
 
@@ -20,13 +29,22 @@ public:
 	//Needs to be virtual so inheriting 
 	//classes destructors will be called on deletion
 	virtual ~Builder() = default;
+
+	//Members are protected so the children can still access them
+protected:
+	int WheelSize;
+	int Doors;
+	int EnginePower;
+	std::string Model;
 };
 
 //Derived builder class for BMW
 class BmwBuilder : public Builder
 {
 public:
-	BmwBuilder() = default;
+	BmwBuilder()
+		:Builder(20,250,4,"BMW")
+	{}
 	int GetWheelSize() override
 	{
 		return WheelSize;
@@ -44,18 +62,16 @@ public:
 		return Model;
 	}
 
-private:
-	const int WheelSize = 20;
-	const int Doors = 4;
-	const int EnginePower = 250;
-	const std::string Model = "BMW";
+
 };
 
 //Derived builder class for mazda
 class MazdaBuilder : public Builder
 {
 public:
-	MazdaBuilder() = default;
+	MazdaBuilder()
+		:Builder(18,200,2,"Mazda")
+	{}
 	
 	int GetWheelSize() override
 	{
@@ -73,11 +89,6 @@ public:
 	{
 		return Model;
 	}
-private:
-	const int WheelSize = 18;
-	const int Doors = 2;
-	const int EnginePower = 200;
-	const std::string Model = "Mazda";
 };
 
 //Car class to be build
