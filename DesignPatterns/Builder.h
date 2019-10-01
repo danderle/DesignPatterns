@@ -16,6 +16,10 @@ public:
 	//Return the number of doors of a car
 	virtual int GetDoorNum() = 0;
 	virtual std::string GetModel() = 0;
+
+	//Needs to be virtual so inheriting 
+	//classes destructors will be called on deletion
+	virtual ~Builder() = default;
 };
 
 //Derived builder class for BMW
@@ -83,7 +87,7 @@ public:
 	//Default constructor deleted
 	Car() = delete;
 	//Overloaded Constructor with parameters passed in from the derived builder classes
-	Car(int wheelSize, int enginePower, int doors, std::string& model)
+	Car(int wheelSize, int enginePower, int doors, std::string model)
 		:
 		WheelSize(wheelSize),
 		EnginePower(enginePower),
@@ -92,7 +96,7 @@ public:
 	{}
 
 	//Prints the build car specifications
-	void Car::GetSpecs() const
+	void GetSpecs() const
 	{
 		std::stringstream ss;
 		ss << "Model: " << Model << "\n";
@@ -115,13 +119,13 @@ class Director
 {
 public:
 	//Sets one of the derived builder classes
-	void Director::SetBuilder(Builder* builder)
+	void SetBuilder(Builder* builder)
 	{
 		pBuilder = builder;
 	}
 
 	//Builds a car with the set builder class and returns a car
-	Car* Director::MakeCar()
+	Car* MakeCar()
 	{
 		Car* car = new Car(
 			pBuilder->GetWheelSize(),
